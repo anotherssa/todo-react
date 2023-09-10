@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font: 400 16px/1.5 Helvetica, sans-serif;
 
