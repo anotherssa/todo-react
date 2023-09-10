@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '../App.module.css';
 
-export default function AddTodo({ addTodo }) {
+export default function AddTodo({ onAddTodo }) {
   const [newTodoText, setNewTodoText] = useState('');
 
   return (
@@ -14,13 +14,13 @@ export default function AddTodo({ addTodo }) {
         onChange={e => setNewTodoText(e.target.value)}
         onKeyDown={e => {
           if (e.code == 'Enter') {
-            addTodo(newTodoText);
+            onAddTodo(newTodoText);
             setNewTodoText('');
           }
         }}
         autoFocus
       />
-      <button title="Add" onClick={addTodo} className={styles.addTodoButton}>+</button>
+      <button title="Add" onClick={() => onAddTodo(newTodoText)} className={styles.addTodoButton}>+</button>
     </div>
   );
 }

@@ -22,6 +22,10 @@ function App() {
   }
 
   function addTodo(newTodoText) {
+    if (newTodoText == '') {
+      return;
+    }
+
     const newTodo = {
       id: crypto.randomUUID(),
       text: newTodoText,
@@ -40,7 +44,7 @@ function App() {
   return (
     <div className={styles.todosApp}>
       <h1>Todos</h1>
-      <AddTodo addTodo={addTodo} />
+      <AddTodo onAddTodo={addTodo} />
 
       {visibleTodos.map(todo => 
         <TodoItem 
