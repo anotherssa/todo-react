@@ -37,3 +37,7 @@ body {
 button {
   transition: all .3s ease-in;
 }
+
+.hidden {
+  display: none;
+}
