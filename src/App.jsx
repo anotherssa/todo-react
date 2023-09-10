@@ -10,15 +10,15 @@ function App() {
   let visibleTodos = todos;
 
   function handleToggle(id, nextDone) {
-    setTodos(todos.map(todo => todo.id === id ?  { ...todo, done: nextDone } : todo));
+    setTodos(prevTodos => prevTodos.map(todo => todo.id === id ?  { ...todo, done: nextDone } : todo));
   }
 
   function handleUpdate(id, nextText) {
-    setTodos(todos.map(todo => todo.id === id ? { ...todo, text: nextText } : todo));
+    setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, text: nextText } : todo));
   }
 
   function handleDelete(id) {
-    setTodos(todos.filter(todo => todo.id !== id));
+    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
   }
 
   function addTodo(newTodoText) {
@@ -26,9 +26,9 @@ function App() {
       id: crypto.randomUUID(),
       text: newTodoText,
       done: false,
-    }
+    };
 
-    setTodos([...todos, newTodo])
+    setTodos(prevTodos => [...prevTodos, newTodo]);
   }
 
   if (filter === 'active') {
