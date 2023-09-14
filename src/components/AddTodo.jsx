@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import styles from '../App.module.css';
+
 
 export default function AddTodo({ onAddTodo }) {
   const [newTodoText, setNewTodoText] = useState('');
 
   return (
-    <div className={styles.addTodoWrapper}>
+    <div className="flex border-b border-slate-300">
       <input 
         type="text"
-        className={styles.input}
+        className="w-full p-2 rounded-tl border-transparent"
         placeholder="Enter todo"
         value={newTodoText} 
         onChange={e => setNewTodoText(e.target.value)}
@@ -20,7 +20,10 @@ export default function AddTodo({ onAddTodo }) {
         }}
         autoFocus
       />
-      <button title="Add" onClick={() => onAddTodo(newTodoText)} className={styles.addTodoButton}>+</button>
+      <button 
+        title="Add"
+        className="ml-[1px] py-2 px-4 rounded-tr bg-sky-500 hover:bg-sky-600 text-lg text-white"
+        onClick={() => onAddTodo(newTodoText)}>+</button>
     </div>
   );
 }
