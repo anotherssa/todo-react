@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useTodosDispatch } from '../hooks/todosContext';
+import { createTodo } from '../utils/utils';
 
 
 export default function AddTodo({ onAddTodo }) {
   const [newTodoText, setNewTodoText] = useState('');
+  const dispatch = useTodosDispatch();
 
   return (
     <div className="flex border-b border-slate-300">
@@ -14,7 +17,7 @@ export default function AddTodo({ onAddTodo }) {
         onChange={e => setNewTodoText(e.target.value)}
         onKeyDown={e => {
           if (e.code == 'Enter') {
-            onAddTodo(newTodoText);
+            dispatch({ type: 'added', ...createTodo(newTodoText) });
             setNewTodoText('');
           }
         }}
@@ -23,7 +26,11 @@ export default function AddTodo({ onAddTodo }) {
       <button 
         title="Add"
         className="ml-[1px] py-2 px-4 rounded-tr bg-sky-500 hover:bg-sky-600 text-lg text-white"
-        onClick={() => onAddTodo(newTodoText)}>+</button>
+        onClick={() => {
+          dispatch({ type: 'added', ...createTodo(newTodoText) });
+          setNewTodoText('');
+        }}
+        >+</button>
     </div>
   );
 }
